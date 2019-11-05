@@ -11,3 +11,45 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.container {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+/*  Меняем порядок элементов, делая как бы строчную расстановку */
+
+
+.playingfield {
+  flex-flow: column wrap;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 302px;
+  width: 302px;
+  padding: 0;
+  margin: 0;
+}
+
+.cell {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  border: 1px solid red;
+
+  height: 100px;
+  width: 100px;
+}
+
+.cell:nth-child(3n+1) {
+  order: 1;
+}
+
+.cell:nth-child(3n+2) {
+  order: 2;
+}
+
+.cell:nth-child(3n) {
+  order: 3;
+}
