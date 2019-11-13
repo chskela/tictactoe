@@ -37,7 +37,8 @@ code {
   margin: 0;
   box-sizing: border-box;
   border: 1px solid red;
-
+  line-height: 90px;
+  font-size: 80px;
   height: 100px;
   width: 100px;
 }
