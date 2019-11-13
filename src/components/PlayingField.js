@@ -1,6 +1,7 @@
 import React from 'react';
 import Cell from './Cell';
 import Win from './Win';
+import GameOver from './GameOver';
 
 class PlayingField extends React.Component {
   constructor(props) {
@@ -10,7 +11,6 @@ class PlayingField extends React.Component {
       playingField: ['', '', '', '', '', '', '', '', ''],
       isGameOver: false,
       step: 0,
-
     };
   }
 
@@ -26,11 +26,11 @@ class PlayingField extends React.Component {
       (p[2] === p[4] && p[2] === p[6] && p[2] !== '');
   };
 
-  handleClick = (id) => {
-    if (!this.state.isGameOver) {
+  handleClick = (event) => {
+    if (!this.state.isGameOver && event.value === '') {
       this.setState({
         playingField: this.state.playingField.map((item, index) => {
-          return (id === index && item === '') ?
+          return (event.id === index && item === '') ?
             (this.state.player === 2 ? 'X' : 'O') :
             this.state.playingField[index];
         }),
@@ -41,9 +41,6 @@ class PlayingField extends React.Component {
       });
     };
   };
-
-
-
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.step === 8) {
@@ -64,15 +61,18 @@ class PlayingField extends React.Component {
         />
       );
 
-
     return (
       <div>
-        <h2>Game Over: {this.state.isGameOver.toString()}</h2>
-        <Win isWin={this.isWin} player={this.state.player} />
-        {/* <h2>{this.isWin() ? `Победил ${this.state.player} игрок` : null}</h2> */}
+        <p>Крестики - нолики</p>
         <div className="playingfield">
           {cells}
         </div>
+        <div>
+          <p>Результат игры: </p>
+          <GameOver isGameOver={this.state.isGameOver} isWin={this.isWin} />
+          <Win isWin={this.isWin} player={this.state.player} />
+        </div>
+
       </div>
     );
   };
